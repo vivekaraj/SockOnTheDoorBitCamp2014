@@ -39,12 +39,14 @@ public class MainActivity extends Activity {
 			bOkay.setOnClickListener(new OnClickListener() {				
 				@Override
 				public void onClick(View v) {
-					Intent i = new Intent(MainActivity.this, List.class);
-					SharedPreferences.Editor editor = getSharedPreferences(
-						      "com.example.intentdemo", Context.MODE_PRIVATE).edit();
-					editor.putString("myNumber", etPhoneNumber.getText().toString());
-					editor.commit();
-					startActivity(i);
+					if (etPhoneNumber.getText().toString().length() == 10){
+						Intent i = new Intent(MainActivity.this, List.class);
+						SharedPreferences.Editor editor = getSharedPreferences(
+							      "com.example.intentdemo", Context.MODE_PRIVATE).edit();
+						editor.putString("myNumber", etPhoneNumber.getText().toString());
+						editor.commit();
+						startActivity(i);
+					}
 				}
 			});
 			

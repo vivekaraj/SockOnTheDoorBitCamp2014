@@ -38,12 +38,16 @@ public class List extends Activity {
 					Intent i = new Intent(List.this, ActivityTwo.class);
 					SharedPreferences.Editor editor = getSharedPreferences(
 						      "com.example.intentdemo", Context.MODE_PRIVATE).edit();
-					editor.putString("Number1", friend1.getText().toString());
-					if (editor.putString("Number2", friend2.getText().toString())!=null)
+					if (friend1.getText().toString().length() == 10)
+						editor.putString("Number1", friend1.getText().toString());
+					if (editor.putString("Number2", friend2.getText().toString())!=null && 
+							friend2.getText().toString().length() == 10)
 						editor.putString("Number2", friend2.getText().toString());
-					if (editor.putString("Number3", friend2.getText().toString())!=null)
+					if (editor.putString("Number3", friend2.getText().toString())!=null && 
+							friend3.getText().toString().length() == 10)
 						editor.putString("Number3", friend3.getText().toString());
-					if (editor.putString("Number4", friend2.getText().toString())!=null)
+					if (editor.putString("Number4", friend2.getText().toString())!=null && 
+							friend4.getText().toString().length() == 10)
 						editor.putString("Number4", friend4.getText().toString());
 					editor.commit();
 					startActivity(i);
