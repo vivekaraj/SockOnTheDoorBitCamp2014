@@ -13,7 +13,14 @@
     
     >
 
-"
+"<TextView
+        android:gravity="center"
+        android:id="@+id/Info1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="Placeholder"
+        android:textSize="10sp" />
 
     <EditText
         android:id="@+id/etPhoneNumber"
@@ -21,11 +28,11 @@
         android:layout_height="wrap_content"
         android:gravity="center" 
         android:hint="Enter your phone number"/>
-    
+
     <Button
         android:id="@+id/bOkay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Okay" />
+        android:text="Next" />
 
 </LinearLayout>

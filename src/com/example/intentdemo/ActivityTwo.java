@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ActivityTwo extends Activity {
+	String friend1, friend2, friend3, friend4;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -18,12 +20,12 @@ public class ActivityTwo extends Activity {
 		TextView textView = (TextView) findViewById(R.id.myNumber);
 		SharedPreferences prefs = getSharedPreferences(
 			      "com.example.intentdemo", Context.MODE_PRIVATE);
-		String defaultValue = prefs.getString("myNumber", "vivek");
+		String defaultValue = prefs.getString("myNumber", "You have not entered your number") + "&&";
+		defaultValue += prefs.getString("Number1", "You have not entered your number") + "&&";
+		defaultValue += prefs.getString("Number2", "You have not entered your number") + "&&";
+		defaultValue += prefs.getString("Number3", "You have not entered your number") + "&&";
+		defaultValue += prefs.getString("Number4", "You have not entered your number");
 		textView.setText(defaultValue);
-
-		
-		
-		String numberholder = getIntent().getStringExtra("phoneNumber");
 		
 		final Button bTurnOn = (Button) findViewById(R.id.bTurnOn);
 		
@@ -38,8 +40,6 @@ public class ActivityTwo extends Activity {
 				}
 			}
 		});
-		
-		
 
 	}
 }

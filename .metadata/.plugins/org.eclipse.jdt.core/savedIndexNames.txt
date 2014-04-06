@@ -1,2 +1,0 @@
-INDEX VERSION 1.126+C:\Users\Vivek A Raj\Downloads\sockonthedoorbitcamp2014\.metadata\.plugins\org.eclipse.jdt.core
-1998713820.index

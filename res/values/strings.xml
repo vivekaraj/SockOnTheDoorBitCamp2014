@@ -5,6 +5,6 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Enter your phone number</string>
     <string name="title_activity_activity_two"></string>
-    <string name="myNumber">Vivek</string>
+    <string name="title_activity_list">List</string>
 
 </resources>
