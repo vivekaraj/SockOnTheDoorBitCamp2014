@@ -1,5 +1,11 @@
 package com.example.intentdemo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Scanner;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -14,36 +20,82 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		final SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-		
-		final EditText etPhoneNumber = (EditText) findViewById(R.id.etPhoneNumber);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		
-		Button bOkay = (Button) findViewById(R.id.bOkay);
-		
-		bOkay.setOnClickListener(new OnClickListener() {
+
+		SharedPreferences prefs = this.getSharedPreferences(
+			      "com.example.intentdemo", Context.MODE_PRIVATE);
+		String restoredText = prefs.getString("myNumber", null);
+		if (restoredText != null) {
+			Intent i = new Intent(MainActivity.this, ActivityTwo.class);
+			startActivity(i);
+			finish();
+		} else {
+			final EditText etPhoneNumber = (EditText) findViewById(R.id.etPhoneNumber);
 			
+			Button bOkay = (Button) findViewById(R.id.bOkay);			
 			
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(MainActivity.this, ActivityTwo.class);
-				String text = etPhoneNumber.getText().toString();
-				try {
-					int phNumber = Integer.parseInt(text);
-				} catch(Exception e) {
-					
+			bOkay.setOnClickListener(new OnClickListener() {				
+				@Override
+				public void onClick(View v) {
+					Intent i = new Intent(MainActivity.this, ActivityTwo.class);
+					SharedPreferences.Editor editor = getSharedPreferences(
+						      "com.example.intentdemo", Context.MODE_PRIVATE).edit();
+					editor.putString("myNumber", etPhoneNumber.getText().toString());
+					editor.commit();
+					startActivity(i);
 				}
-				i.putExtra("phoneNumber", text);
-				SharedPreferences.Editor editor = sharedPref.edit();
-				editor.putInt(getString(R.string.saved_high_score), newHighScore);
-				editor.commit();
-				startActivity(i);
-			}
-		});
+			});
+			
+		}
 		
+
 		
+		/*try {
+			super.onCreate(savedInstanceState);
+			setContentView(R.layout.activity_main);
+			File file = new File("test.txt");
+			Scanner sc = new Scanner(file);
+			Intent i = new Intent(MainActivity.this, ActivityTwo.class);
+			startActivity(i);
+			//done
+		} catch(Exception e) {		
+			super.onCreate(savedInstanceState);
+			setContentView(R.layout.activity_main);
+	
+			final EditText etPhoneNumber = (EditText) findViewById(R.id.etPhoneNumber);
+	
+			Button bOkay = (Button) findViewById(R.id.bOkay);			
+			
+			bOkay.setOnClickListener(new OnClickListener() {				
+				@Override
+				public void onClick(View v) {
+					Intent i = new Intent(MainActivity.this, ActivityTwo.class);
+					String text = etPhoneNumber.getText().toString();
+					String revText = "";
+					for(int j = 0; j < 10; j++) {
+						revText += text.charAt(-1 * j + 9);						
+					}
+					int revPhNumber = Integer.parseInt(revText);
+					byte[] digits = new byte[10];
+					
+					for(int j = 0; j < 10; j++) {
+						digits[j] = (byte) (revPhNumber % 10);
+						revPhNumber /= 10;
+					}
+					try {
+					FileOutputStream outputStream = getApplicationContext().openFileOutput("test.txt", Context.MODE_PRIVATE);
+					outputStream.write(digits);
+					outputStream.close();
+					} catch(Exception e) {
+						throw new IllegalArgumentException();
+					}
+					startActivity(i);
+				}
+			});
+		}
+		*/
 	}
 }
  

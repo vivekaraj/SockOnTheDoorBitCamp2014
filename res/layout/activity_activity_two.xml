@@ -10,9 +10,17 @@
     android:gravity="center"
     android:orientation="vertical">
     
+   
+    
     <Button
         android:id="@+id/bTurnOn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Turn it on" />
+    
+     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/myNumber" />
+     
 </LinearLayout>

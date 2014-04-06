@@ -1,6 +1,8 @@
 package com.example.intentdemo;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,6 +15,12 @@ public class ActivityTwo extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_activity_two);
+		TextView textView = (TextView) findViewById(R.id.myNumber);
+		SharedPreferences prefs = getSharedPreferences(
+			      "com.example.intentdemo", Context.MODE_PRIVATE);
+		String defaultValue = prefs.getString("myNumber", "vivek");
+		textView.setText(defaultValue);
+
 		
 		
 		String numberholder = getIntent().getStringExtra("phoneNumber");
@@ -30,6 +38,8 @@ public class ActivityTwo extends Activity {
 				}
 			}
 		});
+		
+		
 
 	}
 }
