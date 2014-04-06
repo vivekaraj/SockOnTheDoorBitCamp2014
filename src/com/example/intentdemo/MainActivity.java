@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Scanner;
 
 import android.app.Activity;
@@ -53,6 +52,52 @@ public class MainActivity extends Activity {
 			
 		}
 		
+
+		
+		/*try {
+			super.onCreate(savedInstanceState);
+			setContentView(R.layout.activity_main);
+			File file = new File("test.txt");
+			Scanner sc = new Scanner(file);
+			Intent i = new Intent(MainActivity.this, ActivityTwo.class);
+			startActivity(i);
+			//done
+		} catch(Exception e) {		
+			super.onCreate(savedInstanceState);
+			setContentView(R.layout.activity_main);
+	
+			final EditText etPhoneNumber = (EditText) findViewById(R.id.etPhoneNumber);
+	
+			Button bOkay = (Button) findViewById(R.id.bOkay);			
+			
+			bOkay.setOnClickListener(new OnClickListener() {				
+				@Override
+				public void onClick(View v) {
+					Intent i = new Intent(MainActivity.this, ActivityTwo.class);
+					String text = etPhoneNumber.getText().toString();
+					String revText = "";
+					for(int j = 0; j < 10; j++) {
+						revText += text.charAt(-1 * j + 9);						
+					}
+					int revPhNumber = Integer.parseInt(revText);
+					byte[] digits = new byte[10];
+					
+					for(int j = 0; j < 10; j++) {
+						digits[j] = (byte) (revPhNumber % 10);
+						revPhNumber /= 10;
+					}
+					try {
+					FileOutputStream outputStream = getApplicationContext().openFileOutput("test.txt", Context.MODE_PRIVATE);
+					outputStream.write(digits);
+					outputStream.close();
+					} catch(Exception e) {
+						throw new IllegalArgumentException();
+					}
+					startActivity(i);
+				}
+			});
+		}
+		*/
 	}
 }
  
